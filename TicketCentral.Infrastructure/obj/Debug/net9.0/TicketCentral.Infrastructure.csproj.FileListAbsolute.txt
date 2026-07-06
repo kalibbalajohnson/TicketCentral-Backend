@@ -1,0 +1,14 @@
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/bin/Debug/net9.0/TicketCentral.Infrastructure.deps.json
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/bin/Debug/net9.0/TicketCentral.Infrastructure.runtimeconfig.json
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/bin/Debug/net9.0/TicketCentral.Infrastructure.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/bin/Debug/net9.0/TicketCentral.Infrastructure.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.csproj.AssemblyReference.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.AssemblyInfoInputs.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.AssemblyInfo.cs
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.csproj.CoreCompileInputs.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/refint/TicketCentral.Infrastructure.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.genruntimeconfig.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/ref/TicketCentral.Infrastructure.dll

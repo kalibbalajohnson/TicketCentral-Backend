@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ce5E8TXkEQtYhsqRdsu7c9HFdmJVqWT58NbNbXu0nZ8=",
+  "Source": "TicketCentral.Api",
+  "BasePath": "_content/TicketCentral.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,15 @@
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/bin/Debug/net9.0/TicketCentral.Modules.Auth.deps.json
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/bin/Debug/net9.0/TicketCentral.Modules.Auth.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/bin/Debug/net9.0/TicketCentral.Modules.Auth.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/bin/Debug/net9.0/TicketCentral.Infrastructure.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/bin/Debug/net9.0/TicketCentral.Infrastructure.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.csproj.AssemblyReference.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.GeneratedMSBuildEditorConfig.editorconfig
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.AssemblyInfoInputs.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.AssemblyInfo.cs
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.csproj.CoreCompileInputs.cache
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCe.38E77946.Up2Date
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/refint/TicketCentral.Modules.Auth.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/ref/TicketCentral.Modules.Auth.dll
