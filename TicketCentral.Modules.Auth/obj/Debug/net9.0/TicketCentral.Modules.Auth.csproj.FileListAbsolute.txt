@@ -13,3 +13,4 @@
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/refint/TicketCentral.Modules.Auth.dll
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.pdb
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/ref/TicketCentral.Modules.Auth.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/obj/Debug/net9.0/TicketCentral.Modules.Auth.sourcelink.json

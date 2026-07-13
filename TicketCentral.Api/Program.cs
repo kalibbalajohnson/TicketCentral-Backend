@@ -56,7 +56,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// ---------------- PIPELINE ----------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -64,7 +63,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-// 
+
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -1199,6 +1199,22 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "TicketCentral.Modules.Events/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "TicketCentral.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TicketCentral.Modules.Events.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TicketCentral.Modules.Events.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -3692,6 +3708,11 @@
       "type": "project",
       "path": "../TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj",
       "msbuildProject": "../TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj"
+    },
+    "TicketCentral.Modules.Events/1.0.0": {
+      "type": "project",
+      "path": "../TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj",
+      "msbuildProject": "../TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3704,7 +3725,8 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2",
       "TicketCentral.Infrastructure >= 1.0.0",
-      "TicketCentral.Modules.Auth >= 1.0.0"
+      "TicketCentral.Modules.Auth >= 1.0.0",
+      "TicketCentral.Modules.Events >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3737,6 +3759,9 @@
             },
             "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj": {
               "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj"
+            },
+            "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj": {
+              "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj"
             }
           }
         }

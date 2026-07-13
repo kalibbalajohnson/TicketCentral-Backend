@@ -31,6 +31,9 @@
               },
               "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj": {
                 "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Auth/TicketCentral.Modules.Auth.csproj"
+              },
+              "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj": {
+                "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj"
               }
             }
           }
@@ -237,6 +240,72 @@
               "version": "[8.19.1, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj",
+        "projectName": "TicketCentral.Modules.Events",
+        "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj",
+        "packagesPath": "/home/bestill/.nuget/packages/",
+        "outputPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/bestill/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/TicketCentral.Infrastructure.csproj": {
+                "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/TicketCentral.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
           "imports": [
             "net461",
             "net462",

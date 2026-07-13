@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketCentral.Modules.Auth\TicketCentral.Modules.Auth.csproj" />
+    <ProjectReference Include="..\TicketCentral.Modules.Events\TicketCentral.Modules.Events.csproj" />
     <ProjectReference Include="..\TicketCentral.Infrastructure\TicketCentral.Infrastructure.csproj" />
   </ItemGroup>
 

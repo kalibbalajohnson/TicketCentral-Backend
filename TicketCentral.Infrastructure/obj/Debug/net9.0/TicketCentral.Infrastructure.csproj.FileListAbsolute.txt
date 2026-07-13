@@ -12,3 +12,4 @@
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.pdb
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.genruntimeconfig.cache
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/ref/TicketCentral.Infrastructure.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Infrastructure/obj/Debug/net9.0/TicketCentral.Infrastructure.sourcelink.json

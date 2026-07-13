@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TicketCentral.Infrastructure.Data;
 using TicketCentral.Infrastructure.Models;
+
 using TicketCentral.Modules.Events.Events.DTOs;
 
 namespace TicketCentral.Modules.Events.Events.Controllers;
@@ -57,14 +58,13 @@ public class EventsController : ControllerBase
 
             return Ok(events);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching events");
 
             return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -78,7 +78,7 @@ public class EventsController : ControllerBase
             _logger.LogInformation("Searching events {Query}", query);
 
 
-            if(string.IsNullOrWhiteSpace(query))
+            if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Search query is required");
 
 
@@ -112,14 +112,13 @@ public class EventsController : ControllerBase
 
             return Ok(events);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error searching events");
 
             return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -133,20 +132,19 @@ public class EventsController : ControllerBase
                 .FirstOrDefaultAsync(x => x.Id == id);
 
 
-            if(eventItem == null)
+            if (eventItem == null)
                 return NotFound("Event not found");
 
 
             return Ok(MapResponse(eventItem));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching event {Id}", id);
 
             return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -160,20 +158,19 @@ public class EventsController : ControllerBase
                 .FirstOrDefaultAsync(x => x.Slug == slug);
 
 
-            if(eventItem == null)
+            if (eventItem == null)
                 return NotFound("Event not found");
 
 
             return Ok(MapResponse(eventItem));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching event by slug");
 
             return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -184,7 +181,7 @@ public class EventsController : ControllerBase
         try
         {
             var events = await _dbContext.Events
-                .Where(x => 
+                .Where(x =>
                     x.IsFeatured &&
                     x.Status == EventStatus.Published)
                 .Select(x => new EventResponseDto
@@ -206,14 +203,13 @@ public class EventsController : ControllerBase
 
             return Ok(events);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching featured events");
 
             return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -261,14 +257,13 @@ public class EventsController : ControllerBase
                 new { id = eventItem.Id },
                 MapResponse(eventItem));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating event");
 
-            return StatusCode(500,"Internal server error");
+            return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -285,7 +280,7 @@ public class EventsController : ControllerBase
                 await _dbContext.Events.FindAsync(id);
 
 
-            if(eventItem == null)
+            if (eventItem == null)
                 return NotFound("Event not found");
 
 
@@ -307,14 +302,13 @@ public class EventsController : ControllerBase
 
             return Ok(MapResponse(eventItem));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            _logger.LogError(ex,"Error updating event");
+            _logger.LogError(ex, "Error updating event");
 
-            return StatusCode(500,"Internal server error");
+            return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -329,7 +323,7 @@ public class EventsController : ControllerBase
                 await _dbContext.Events.FindAsync(id);
 
 
-            if(eventItem == null)
+            if (eventItem == null)
                 return NotFound("Event not found");
 
 
@@ -340,14 +334,13 @@ public class EventsController : ControllerBase
 
             return Ok("Event deleted successfully");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            _logger.LogError(ex,"Error deleting event");
+            _logger.LogError(ex, "Error deleting event");
 
-            return StatusCode(500,"Internal server error");
+            return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
@@ -364,7 +357,7 @@ public class EventsController : ControllerBase
                 await _dbContext.Events.FindAsync(id);
 
 
-            if(eventItem == null)
+            if (eventItem == null)
                 return NotFound("Event not found");
 
 
@@ -377,14 +370,13 @@ public class EventsController : ControllerBase
 
             return Ok("Event status updated successfully");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            _logger.LogError(ex,"Error updating event status");
+            _logger.LogError(ex, "Error updating event status");
 
-            return StatusCode(500,"Internal server error");
+            return StatusCode(500, "Internal server error");
         }
     }
-
 
 
 
