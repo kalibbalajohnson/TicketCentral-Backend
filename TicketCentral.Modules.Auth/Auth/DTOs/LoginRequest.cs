@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TicketCentral.Modules.Auth.DTOs;
 
-public class LoginRequest
+public class LoginRequestDTO
 {
     [Required]
     [EmailAddress]

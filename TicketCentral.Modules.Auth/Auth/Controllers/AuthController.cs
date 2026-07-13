@@ -34,7 +34,7 @@ public class AuthController : ControllerBase
 
     // ---------------- REGISTER ----------------
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequestDTO request)
     {
         try
         {
@@ -59,7 +59,7 @@ public class AuthController : ControllerBase
                 Email = request.Email,
                 Phone = request.Phone,
                 Password = passwordHash,
-                Role = "User",
+                Role = UserRole.User,
                 CreatedAt = DateTime.UtcNow,
                 IsLoggedIn = false
             };
@@ -80,7 +80,7 @@ public class AuthController : ControllerBase
 
     // ---------------- LOGIN ----------------
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequestDTO  request)
     {
         try
         {
@@ -115,7 +115,7 @@ public class AuthController : ControllerBase
 
             _logger.LogInformation("Login successful {Email}", request.Email);
 
-            return Ok(new AuthResponse
+            return Ok(new AuthResponseDTO 
             {
                 AccessToken = accessToken,
                 RefreshToken = refreshToken
@@ -130,7 +130,7 @@ public class AuthController : ControllerBase
 
     // ---------------- REFRESH TOKEN ----------------
     [HttpPost("refresh")]
-    public async Task<IActionResult> Refresh(TokenRequest request)
+    public async Task<IActionResult> Refresh(TokenRequestDTO  request)
     {
         try
         {
@@ -152,7 +152,7 @@ public class AuthController : ControllerBase
 
             _logger.LogInformation("Token refreshed for {Email}", user.Email);
 
-            return Ok(new AuthResponse
+            return Ok(new AuthResponseDTO 
             {
                 AccessToken = newAccessToken,
                 RefreshToken = newRefreshToken
@@ -167,7 +167,7 @@ public class AuthController : ControllerBase
 
     // ---------------- LOGOUT ----------------
     [HttpPost("logout")]
-    public async Task<IActionResult> Logout([FromBody] TokenRequest request)
+    public async Task<IActionResult> Logout([FromBody] TokenRequestDTO  request)
     {
         try
         {

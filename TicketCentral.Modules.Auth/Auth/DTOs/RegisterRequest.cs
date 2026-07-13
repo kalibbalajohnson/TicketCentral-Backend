@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TicketCentral.Modules.Auth.DTOs;
 
-public class RegisterRequest
+public class RegisterRequestDTO
 {
     [Required, MaxLength(150)]
     public string FirstName { get; set; } = string.Empty;

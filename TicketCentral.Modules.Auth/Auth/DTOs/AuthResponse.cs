@@ -1,6 +1,6 @@
 namespace TicketCentral.Modules.Auth.DTOs;
 
-public class AuthResponse
+public class AuthResponseDTO
 {
     public Guid UserId { get; set; }
 
