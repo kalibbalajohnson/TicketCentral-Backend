@@ -6,7 +6,7 @@ namespace TicketCentral.Modules.Events.Events.DTOs;
 public class CreateEventDto
 {
     [Required]
-    public Guid OrganiserId { get; set; }
+    public Guid UserId { get; set; }
 
     [Required]
     [StringLength(200)]
@@ -16,7 +16,10 @@ public class CreateEventDto
     public string? Description { get; set; }
 
     [StringLength(500)]
-    public string? Image { get; set; }
+    public string? ListingImage { get; set; }
+
+    [StringLength(500)]
+    public string? BannerImage { get; set; }
 
     [Required]
     public EventType Type { get; set; }
@@ -35,7 +38,16 @@ public class CreateEventDto
     public int Capacity { get; set; }
 
     [Required]
-    public DateTime EventDate { get; set; }
+    [StringLength(50)]
+    public EventOccurrence? Occurrence { get; set; } = EventOccurrence.Single;
+
+    [Required]
+    public DateTime EventStartDateTime { get; set; }
+
+    [Required]
+    public DateTime EventEndDateTime { get; set; }
 
     public bool IsFeatured { get; set; } = false;
+
+    public bool IsPrivate { get; set; } = false;
 }

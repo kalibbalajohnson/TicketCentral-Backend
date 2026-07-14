@@ -1,4 +1,5 @@
 namespace TicketCentral.Modules.Auth.DTOs;
+using TicketCentral.Infrastructure.Models;
 
 public class AuthResponseDTO
 {
@@ -8,14 +9,20 @@ public class AuthResponseDTO
 
     public string LastName { get; set; } = string.Empty;
 
+    public UserGender Gender { get; set; }
+
+    public string IDPassportnumber { get; set; } = string.Empty;
+    
+    public DateTime? DateOfBith { get; set; }
+
     public string Email { get; set; } = string.Empty;
 
-    public string Phone { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
 
-    public string Role { get; set; } = string.Empty;
+    public UserRole Role { get; set; }
 
     public string AccessToken { get; set; } = string.Empty;
-    
+
     public string RefreshToken { get; set; } = string.Empty;
 
     public DateTime? LastLoginAt { get; set; }

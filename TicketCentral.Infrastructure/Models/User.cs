@@ -8,14 +8,22 @@ public class User
     public Guid Id { get; set; } = Guid.NewGuid();
 
 
-    [Required]
     [StringLength(100)]
-    public string FirstName { get; set; } = string.Empty;
+    public string? FirstName { get; set; } = string.Empty;
 
 
-    [Required]
     [StringLength(100)]
-    public string LastName { get; set; } = string.Empty;
+    public string? LastName { get; set; } = string.Empty;
+
+    [StringLength(10)]
+    public UserGender? Gender { get; set; }
+
+
+    [StringLength(100)]
+    public string? IDPassportNumber { get; set; } = string.Empty;
+
+
+    public DateTime? DateOfBirth { get; set; }
 
 
     [Required]
@@ -29,10 +37,8 @@ public class User
     public string Password { get; set; } = string.Empty;
 
 
-    [Required]
-    [Phone]
     [StringLength(20)]
-    public string Phone { get; set; } = string.Empty;
+    public string? PhoneNumber { get; set; } = string.Empty;
 
 
     [Required]
@@ -61,16 +67,23 @@ public class User
     public DateTime? RefreshTokenExpiryTime { get; set; }
 
 
+    // One-to-One Navigation Property
+    public OrganiserProfile? OrganiserProfile { get; set; }
 
-    // Navigation Property
+
+    // One-to-Many Navigation Property
     public ICollection<Event> Events { get; set; } = new List<Event>();
 }
-
 
 
 public enum UserRole
 {
     Admin,
-    User,
-    Organiser
+    User
+}
+
+public enum UserGender
+{
+    Male,
+    Female
 }

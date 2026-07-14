@@ -5,13 +5,15 @@ public class EventResponseDto
 {
     public Guid Id { get; set; }
 
-    public Guid OrganiserId { get; set; }
+    public Guid UserId { get; set; }
 
     public string Title { get; set; } = string.Empty;
 
     public string? Description { get; set; }
 
-    public string? Image { get; set; }
+    public string? ListingImage { get; set; }
+
+    public string? BannerImage { get; set; }
 
     public EventType Type { get; set; }
 
@@ -23,7 +25,11 @@ public class EventResponseDto
 
     public int Capacity { get; set; }
 
-    public DateTime EventDate { get; set; }
+    public EventOccurrence? Occurrence { get; set; }
+
+    public DateTime EventStartDateTime { get; set; }
+
+    public DateTime EventEndDateTime { get; set; }
 
     public EventStatus Status { get; set; }
 
@@ -34,4 +40,6 @@ public class EventResponseDto
     public string? Slug { get; set; }
 
     public bool IsFeatured { get; set; }
+
+    public bool IsPrivate { get; set; }
 }

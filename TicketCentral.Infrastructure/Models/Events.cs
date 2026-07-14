@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.Tracing;
 
 namespace TicketCentral.Infrastructure.Models;
 
@@ -8,16 +9,13 @@ public class Event
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-
     // Foreign Key
     [Required]
-    public Guid OrganiserId { get; set; }
-
+    public Guid UserId { get; set; }
 
     // Navigation Property
-    [ForeignKey(nameof(OrganiserId))]
-    public User Organiser { get; set; } = null!;
-
+    [ForeignKey(nameof(UserId))]
+    public User User { get; set; } = null!;
 
 
     [Required]
@@ -30,8 +28,10 @@ public class Event
 
 
     [StringLength(500)]
-    public string? Image { get; set; }
+    public string? ListingImage { get; set; }
 
+    [StringLength(500)]
+    public string? BannerImage { get; set; }
 
     [Required]
     public EventType Type { get; set; }
@@ -54,13 +54,18 @@ public class Event
     [Range(1, int.MaxValue)]
     public int Capacity { get; set; }
 
+    [Required]
+    [StringLength(50)]
+    public EventOccurrence? Occurrence { get; set; } = EventOccurrence.Single;
 
     [Required]
-    public DateTime EventDate { get; set; }
-
+    public DateTime EventStartDateTime { get; set; }
 
     [Required]
-    public EventStatus Status { get; set; } = EventStatus.Published;
+    public DateTime EventEndDateTime { get; set; }
+
+    [Required]
+    public EventStatus Status { get; set; } = EventStatus.Draft;
 
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -74,6 +79,8 @@ public class Event
 
 
     public bool IsFeatured { get; set; } = false;
+
+    public bool IsPrivate { get; set; } = false;
 }
 
 
@@ -85,14 +92,20 @@ public enum EventType
 }
 
 
+public enum EventOccurrence
+{
+    Single,
+    Recurring
+}
+
 
 public enum EventStatus
 {
+    Draft,
     Published,
     Cancelled,
     Completed
 }
-
 
 
 public enum EventCategory

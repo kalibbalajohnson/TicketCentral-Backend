@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TicketCentral.Modules.Auth")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a31d1efa65b225fc2398c8de926f1b5e7c7ef2f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+327d94b15c22ee3ae7c89309eed85c82960a2e1a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TicketCentral.Modules.Auth")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TicketCentral.Modules.Auth")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

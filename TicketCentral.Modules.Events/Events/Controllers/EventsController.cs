@@ -38,19 +38,23 @@ public class EventsController : ControllerBase
 
             var events = await _dbContext.Events
                 .Where(x => x.Status == EventStatus.Published)
-                .OrderByDescending(x => x.EventDate)
+                .OrderByDescending(x => x.EventStartDateTime)
                 .Select(x => new EventResponseDto
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    Image = x.Image,
+                    ListingImage = x.ListingImage,
+                    BannerImage = x.BannerImage,
                     Category = x.Category,
                     Type = x.Type,
                     Venue = x.Venue,
-                    EventDate = x.EventDate,
+                    Occurrence = x.Occurrence,
+                    EventStartDateTime = x.EventStartDateTime,
+                    EventEndDateTime = x.EventEndDateTime,
                     Capacity = x.Capacity,
                     Status = x.Status,
                     IsFeatured = x.IsFeatured,
+                    IsPrivate = x.IsPrivate,
                     Slug = x.Slug
                 })
                 .ToListAsync();
@@ -88,6 +92,7 @@ public class EventsController : ControllerBase
             var events = await _dbContext.Events
                 .Where(x =>
                     x.Status == EventStatus.Published &&
+                    x.IsPrivate == false &&
                     (
                         x.Title.ToLower().Contains(query) ||
                         x.Venue.ToLower().Contains(query) ||
@@ -97,11 +102,14 @@ public class EventsController : ControllerBase
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    Image = x.Image,
+                    ListingImage = x.ListingImage,
+                    BannerImage = x.BannerImage,
                     Category = x.Category,
                     Type = x.Type,
                     Venue = x.Venue,
-                    EventDate = x.EventDate,
+                    Occurrence = x.Occurrence,
+                    EventStartDateTime = x.EventStartDateTime,
+                    EventEndDateTime = x.EventEndDateTime,
                     Capacity = x.Capacity,
                     Status = x.Status,
                     IsFeatured = x.IsFeatured,
@@ -188,14 +196,18 @@ public class EventsController : ControllerBase
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    Image = x.Image,
+                    ListingImage = x.ListingImage,
+                    BannerImage = x.BannerImage,
                     Category = x.Category,
                     Type = x.Type,
                     Venue = x.Venue,
-                    EventDate = x.EventDate,
+                    Occurrence = x.Occurrence,
+                    EventStartDateTime = x.EventStartDateTime,
+                    EventEndDateTime = x.EventEndDateTime,
                     Capacity = x.Capacity,
                     Status = x.Status,
                     IsFeatured = x.IsFeatured,
+                    IsPrivate = x.IsPrivate,
                     Slug = x.Slug
                 })
                 .ToListAsync();
@@ -229,20 +241,24 @@ public class EventsController : ControllerBase
             var eventItem = new Event
             {
                 Id = Guid.NewGuid(),
-                OrganiserId = request.OrganiserId,
+                UserId = request.UserId,
                 Title = request.Title,
                 Description = request.Description,
-                Image = request.Image,
+                ListingImage = request.ListingImage,
+                BannerImage = request.BannerImage,
                 Type = request.Type,
                 Category = request.Category,
                 Venue = request.Venue,
                 EventUrl = request.EventUrl,
                 Capacity = request.Capacity,
-                EventDate = request.EventDate,
+                Occurrence = request.Occurrence,
+                EventStartDateTime = request.EventStartDateTime,
+                EventEndDateTime = request.EventEndDateTime,
                 Status = EventStatus.Published,
                 Slug = request.Title.ToLower()
                     .Replace(" ", "-"),
                 IsFeatured = request.IsFeatured,
+                IsPrivate = request.IsPrivate,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -286,14 +302,18 @@ public class EventsController : ControllerBase
 
             eventItem.Title = request.Title;
             eventItem.Description = request.Description;
-            eventItem.Image = request.Image;
+            eventItem.ListingImage = request.ListingImage;
+            eventItem.BannerImage = request.BannerImage;
             eventItem.Type = request.Type;
             eventItem.Category = request.Category;
             eventItem.Venue = request.Venue;
             eventItem.EventUrl = request.EventUrl;
             eventItem.Capacity = request.Capacity;
-            eventItem.EventDate = request.EventDate;
+            eventItem.Occurrence = request.Occurrence;
+            eventItem.EventStartDateTime = request.EventStartDateTime;
+            eventItem.EventEndDateTime = request.EventEndDateTime;
             eventItem.IsFeatured = request.IsFeatured;
+            eventItem.IsPrivate = request.IsPrivate;
             eventItem.EditedAt = DateTime.UtcNow;
 
 
@@ -379,27 +399,63 @@ public class EventsController : ControllerBase
     }
 
 
+    // ---------------- GET MY EVENTS ----------------
+    [Authorize]
+    [HttpGet("myEvents")]
+    public async Task<IActionResult> GetMyEvents()
+    {
+        try
+        {
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+                return Unauthorized();
+
+
+            var events = await _dbContext.Events
+                .Where(x => x.UserId == Guid.Parse(userId))
+                .ToListAsync();
+
+
+            if (!events.Any())
+                return NotFound("No events found");
+
+
+            return Ok(events);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching user events");
+
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
 
     private static EventResponseDto MapResponse(Event e)
     {
         return new EventResponseDto
         {
             Id = e.Id,
-            OrganiserId = e.OrganiserId,
+            UserId = e.UserId,
             Title = e.Title,
             Description = e.Description,
-            Image = e.Image,
+            ListingImage = e.ListingImage,
+            BannerImage = e.BannerImage,
             Type = e.Type,
             Category = e.Category,
             Venue = e.Venue,
             EventUrl = e.EventUrl,
             Capacity = e.Capacity,
-            EventDate = e.EventDate,
+            EventStartDateTime = e.EventStartDateTime,
+            EventEndDateTime = e.EventEndDateTime,
             Status = e.Status,
             CreatedAt = e.CreatedAt,
             EditedAt = e.EditedAt,
             Slug = e.Slug,
-            IsFeatured = e.IsFeatured
+            IsFeatured = e.IsFeatured,
+            IsPrivate = e.IsPrivate,
+            Occurrence = e.Occurrence
         };
     }
 }
