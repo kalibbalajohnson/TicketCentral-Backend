@@ -387,6 +387,8 @@ public class AuthController : ControllerBase
         }
     }
 
+
+
     // ---------------- REFRESH TOKEN ----------------
     [HttpPost("refresh")]
     public async Task<IActionResult> Refresh(TokenRequestDTO request)
@@ -582,6 +584,7 @@ public class AuthController : ControllerBase
             return StatusCode(500, "Internal server error");
         }
     }
+
 
 
     // ---------------- GET MY ORGANISER PROFILE ----------------
