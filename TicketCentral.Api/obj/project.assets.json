@@ -1301,6 +1301,38 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "TicketCentral.Modules.TicketOrder/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "TicketCentral.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TicketCentral.Modules.TicketOrder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TicketCentral.Modules.TicketOrder.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "TicketCentral.Modules.TicketType/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "TicketCentral.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TicketCentral.Modules.TicketType.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TicketCentral.Modules.TicketType.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -3968,6 +4000,16 @@
       "type": "project",
       "path": "../TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj",
       "msbuildProject": "../TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj"
+    },
+    "TicketCentral.Modules.TicketOrder/1.0.0": {
+      "type": "project",
+      "path": "../TicketCentral.Modules.TicketOrder/TicketCentral.Modules.TicketOrder.csproj",
+      "msbuildProject": "../TicketCentral.Modules.TicketOrder/TicketCentral.Modules.TicketOrder.csproj"
+    },
+    "TicketCentral.Modules.TicketType/1.0.0": {
+      "type": "project",
+      "path": "../TicketCentral.Modules.TicketType/TicketCentral.Modules.TicketType.csproj",
+      "msbuildProject": "../TicketCentral.Modules.TicketType/TicketCentral.Modules.TicketType.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3981,7 +4023,9 @@
       "Swashbuckle.AspNetCore >= 6.6.2",
       "TicketCentral.Infrastructure >= 1.0.0",
       "TicketCentral.Modules.Auth >= 1.0.0",
-      "TicketCentral.Modules.Events >= 1.0.0"
+      "TicketCentral.Modules.Events >= 1.0.0",
+      "TicketCentral.Modules.TicketOrder >= 1.0.0",
+      "TicketCentral.Modules.TicketType >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4017,6 +4061,12 @@
             },
             "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj": {
               "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.Events/TicketCentral.Modules.Events.csproj"
+            },
+            "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.TicketOrder/TicketCentral.Modules.TicketOrder.csproj": {
+              "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.TicketOrder/TicketCentral.Modules.TicketOrder.csproj"
+            },
+            "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.TicketType/TicketCentral.Modules.TicketType.csproj": {
+              "projectPath": "/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Modules.TicketType/TicketCentral.Modules.TicketType.csproj"
             }
           }
         }

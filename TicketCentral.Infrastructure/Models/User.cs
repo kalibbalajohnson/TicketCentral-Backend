@@ -73,6 +73,8 @@ public class User
 
     // One-to-Many Navigation Property
     public ICollection<Event> Events { get; set; } = new List<Event>();
+
+    public ICollection<TicketOrder> TicketOrders { get; set; } = new List<TicketOrder>();
 }
 
 

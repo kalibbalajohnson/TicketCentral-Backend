@@ -81,8 +81,13 @@ public class Event
     public bool IsFeatured { get; set; } = false;
 
     public bool IsPrivate { get; set; } = false;
-}
 
+
+    // One-to-Many Navigation Property
+    public ICollection<TicketType> TicketTypes { get; set; } = new List<TicketType>();
+
+    public ICollection<TicketOrder> TicketOrders { get; set; } = new List<TicketOrder>();
+}
 
 
 public enum EventType

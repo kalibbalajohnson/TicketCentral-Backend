@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TicketCentral.Modules.Auth.Config;
 using TicketCentral.Modules.Auth.Services;
+using TicketCentral.Modules.Payments.Services;
 using TicketCentral.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,7 @@ builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<RefreshTokenService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<EmailService>();
+builder.Services.AddHttpClient<RelworxPaymentService>();
 
 // ---------------- AUTH ----------------
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

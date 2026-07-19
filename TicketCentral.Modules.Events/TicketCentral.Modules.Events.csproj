@@ -13,6 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketCentral.Infrastructure\TicketCentral.Infrastructure.csproj" />
-</ItemGroup>
+  </ItemGroup>
 
 </Project>

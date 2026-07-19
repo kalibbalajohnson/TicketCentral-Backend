@@ -17,7 +17,9 @@
           "Swashbuckle.AspNetCore": "6.6.2",
           "TicketCentral.Infrastructure": "1.0.0",
           "TicketCentral.Modules.Auth": "1.0.0",
-          "TicketCentral.Modules.Events": "1.0.0"
+          "TicketCentral.Modules.Events": "1.0.0",
+          "TicketCentral.Modules.TicketOrder": "1.0.0",
+          "TicketCentral.Modules.TicketType": "1.0.0"
         },
         "runtime": {
           "TicketCentral.Api.dll": {}
@@ -782,6 +784,28 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "TicketCentral.Modules.TicketOrder/1.0.0": {
+        "dependencies": {
+          "TicketCentral.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "TicketCentral.Modules.TicketOrder.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "TicketCentral.Modules.TicketType/1.0.0": {
+        "dependencies": {
+          "TicketCentral.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "TicketCentral.Modules.TicketType.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1243,6 +1267,16 @@
       "sha512": ""
     },
     "TicketCentral.Modules.Events/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TicketCentral.Modules.TicketOrder/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TicketCentral.Modules.TicketType/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

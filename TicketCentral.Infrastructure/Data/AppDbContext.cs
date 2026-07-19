@@ -11,5 +11,6 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<OrganiserProfile> OrganiserProfiles { get; set; }
     public DbSet<Event> Events { get; set; }
-
+    public DbSet<TicketType> TicketTypes { get; set; }
+    public DbSet<TicketOrder> TicketOrders { get; set; }
 }
