@@ -6,6 +6,11 @@ using TicketCentral.Modules.Auth.DTOs;
 using TicketCentral.Infrastructure.Models;
 using TicketCentral.Modules.Auth.Services;
 using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using TicketCentral.Modules.Auth.Config;
 
 namespace TicketCentral.Modules.Auth.Controllers;
 
@@ -18,20 +23,155 @@ public class AuthController : ControllerBase
     private readonly RefreshTokenService _refreshTokenService;
     private readonly PasswordService _passwordService;
     private readonly ILogger<AuthController> _logger;
+    private readonly EmailService _emailService;
+    private readonly JwtSettings _jwtSettings;
 
     public AuthController(
         AppDbContext dbContext,
         JwtService jwtService,
         RefreshTokenService refreshTokenService,
         PasswordService passwordService,
-        ILogger<AuthController> logger)
+        ILogger<AuthController> logger,
+         EmailService emailService,
+          JwtSettings jwtSettings)
     {
         _dbContext = dbContext;
         _jwtService = jwtService;
         _refreshTokenService = refreshTokenService;
         _passwordService = passwordService;
         _logger = logger;
+        _emailService = emailService;
+        _jwtSettings = jwtSettings;
     }
+
+
+    // ---------------- FORGOT PASSWORD ----------------
+    [HttpPost("forgot-password")]
+    public async Task<IActionResult> ForgotPassword([FromBody] string email)
+    {
+        try
+        {
+            _logger.LogInformation("Forgot password request for {Email}", email);
+
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(x => x.Email == email);
+
+            if (user == null)
+            {
+                return Ok("If the email exists, a reset link has been sent");
+            }
+
+            var resetToken = _jwtService.GeneratePasswordResetToken(user);
+
+            var resetLink =
+                $"https://ticket-central-frontend.vercel.app/reset-password?token={resetToken}";
+
+
+            // 4. Email body
+            var body = $@"
+            <h2>Password Reset</h2>
+            <p>You requested to reset your password.</p>
+
+            <p>
+                Click the link below:
+            </p>
+
+            <a href='{resetLink}'>
+                Reset Password
+            </a>
+
+            <p>This link expires soon.</p>
+        ";
+
+
+            await _emailService.SendEmailAsync(
+                user.Email,
+                "Reset your Ticket Central password",
+                body
+            );
+
+
+            return Ok("If the email exists, a reset link has been sent");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error sending reset email");
+
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
+
+
+    // ---------------- VALIDATE PASSWORD RESET TOKEN ----------------
+    [HttpGet("validate-reset-token")]
+    public IActionResult ValidateResetToken([FromQuery] string token)
+    {
+        try
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.UTF8.GetBytes(
+                _jwtSettings.Key);
+
+
+            var principal = tokenHandler.ValidateToken(
+                token,
+                new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = _jwtSettings.Issuer,
+                    ValidAudience = _jwtSettings.Audience,
+
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(key)
+                },
+                out SecurityToken validatedToken
+            );
+
+
+            var purpose = principal.Claims
+                .FirstOrDefault(x => x.Type == "purpose")
+                ?.Value;
+
+
+            if (purpose != "password-reset")
+            {
+                return BadRequest(new
+                {
+                    message = "Invalid reset token"
+                });
+            }
+
+
+            var userId = principal.Claims
+                .First(x => x.Type == ClaimTypes.NameIdentifier)
+                .Value;
+
+
+            return Ok(new
+            {
+                valid = true,
+                userId
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Invalid reset token");
+
+            return BadRequest(new
+            {
+                valid = false,
+                message = "Reset link expired or invalid"
+            });
+        }
+    }
+
+
 
     // ---------------- SIGNUP ----------------
     [HttpPost("signup")]
@@ -76,6 +216,127 @@ public class AuthController : ControllerBase
         }
     }
 
+
+
+    // ---------------- RESET PASSWORD ----------------
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(
+        [FromBody] ResetPasswordRequest request)
+    {
+        try
+        {
+            var tokenHandler =
+                new JwtSecurityTokenHandler();
+
+
+            var principal =
+                tokenHandler.ValidateToken(
+                    request.Token,
+
+                    new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = _jwtSettings.Issuer,
+                        ValidAudience = _jwtSettings.Audience,
+
+                        IssuerSigningKey =
+                        new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(
+                                _jwtSettings.Key))
+                    },
+
+                    out SecurityToken validatedToken);
+
+
+            var purpose =
+                principal.Claims
+                .FirstOrDefault(x =>
+                    x.Type == "purpose")
+                ?.Value;
+
+
+            if (purpose != "password-reset")
+            {
+                return BadRequest(
+                    "Invalid reset token");
+            }
+
+
+            var userId =
+                principal.Claims
+                .First(x =>
+                    x.Type ==
+                    ClaimTypes.NameIdentifier)
+                .Value;
+
+
+            var user =
+                await _dbContext.Users
+                .FirstOrDefaultAsync(x =>
+                    x.Id.ToString() == userId); if (user == null)
+            {
+                return NotFound(
+                    "User not found");
+            }
+
+
+            user.Password =
+                _passwordService
+                .HashPassword(
+                    request.NewPassword);
+
+
+            user.EditedAt =
+                DateTime.UtcNow;
+
+
+            user.RefreshToken = null;
+
+            user.RefreshTokenExpiryTime = null;
+            await _dbContext.SaveChangesAsync();
+
+
+            await _emailService.SendEmailAsync(
+                user.Email,
+                "Password Reset Successful",
+                $@"
+                <h2>Password Changed Successfully</h2>
+
+                <p>Hello {user.FirstName},</p>
+
+                <p>
+                    Your Ticket Central password has been
+                    reset successfully.
+                </p>
+
+                <p>
+                    If this was not you, contact support.
+                </p>
+                ");
+
+            return Ok(new
+            {
+                message = "Password reset successfully"
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Password reset failed");
+
+
+            return BadRequest(new
+            {
+                message = "Invalid or expired reset token"
+            });
+        }
+    }
+
+
+
     // ---------------- LOGIN ----------------
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequestDTO request)
@@ -101,7 +362,7 @@ public class AuthController : ControllerBase
                 return Unauthorized("Invalid credentials");
             }
 
-            var accessToken = _jwtService.GenerateToken(user);
+            var accessToken = _jwtService.GenerateLoginToken(user);
             var refreshToken = _refreshTokenService.GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
@@ -140,7 +401,7 @@ public class AuthController : ControllerBase
                 return Unauthorized("Invalid or expired refresh token");
             }
 
-            var newAccessToken = _jwtService.GenerateToken(user);
+            var newAccessToken = _jwtService.GenerateLoginToken(user);
             var newRefreshToken = _refreshTokenService.GenerateRefreshToken();
 
             user.RefreshToken = newRefreshToken;

@@ -28,6 +28,7 @@ builder.Services.AddSingleton(sp =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<RefreshTokenService>();
 builder.Services.AddScoped<PasswordService>();
+builder.Services.AddScoped<EmailService>();
 
 // ---------------- AUTH ----------------
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

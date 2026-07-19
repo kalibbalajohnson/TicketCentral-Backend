@@ -138,3 +138,6 @@
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/obj/Debug/net9.0/TicketCentral.Api.sourcelink.json
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/bin/Debug/net9.0/TicketCentral.Modules.Events.dll
 /home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/bin/Debug/net9.0/TicketCentral.Modules.Events.pdb
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/bin/Debug/net9.0/MailKit.dll
+/home/bestill/Desktop/TicketCentral/ticketcentral-backend/TicketCentral.Api/bin/Debug/net9.0/MimeKit.dll

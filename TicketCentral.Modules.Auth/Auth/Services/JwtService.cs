@@ -16,7 +16,8 @@ public class JwtService
         _settings = settings;
     }
 
-    public string GenerateToken(User user)
+
+    public string GenerateLoginToken(User user)
     {
         var claims = new[]
         {
@@ -26,21 +27,60 @@ public class JwtService
             new Claim(ClaimTypes.Role, user.Role.ToString())
         };
 
+
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_settings.Key));
 
-        var creds = new SigningCredentials(
+
+        var credentials = new SigningCredentials(
             key,
             SecurityAlgorithms.HmacSha256);
+
 
         var token = new JwtSecurityToken(
             issuer: _settings.Issuer,
             audience: _settings.Audience,
             claims: claims,
             expires: DateTime.UtcNow.AddMinutes(_settings.DurationInMinutes),
-            signingCredentials: creds
+            signingCredentials: credentials
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+
+        return new JwtSecurityTokenHandler()
+            .WriteToken(token);
+    }
+
+
+
+    public string GeneratePasswordResetToken(User user)
+    {
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim("purpose", "password-reset")
+        };
+
+
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_settings.Key));
+
+
+        var credentials = new SigningCredentials(
+            key,
+            SecurityAlgorithms.HmacSha256);
+
+
+        var token = new JwtSecurityToken(
+            issuer: _settings.Issuer,
+            audience: _settings.Audience,
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(15),
+            signingCredentials: credentials
+        );
+
+
+        return new JwtSecurityTokenHandler()
+            .WriteToken(token);
     }
 }
